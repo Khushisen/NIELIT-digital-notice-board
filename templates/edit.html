@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="card p-4 shadow-sm">
+    <h3 class="mb-3">✏️ Edit Notice</h3>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" value="{{ notice.title }}" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea class="form-control" name="content" rows="4">{{ notice.content }}</textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Add More Files</label>
+        <input type="file" class="form-control" name="files" multiple>
+      </div>
+      {% if notice.files %}
+        <div class="mb-3">
+          <h6>Current Files:</h6>
+          <ul class="list-group">
+            {% for file in notice.files %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('uploaded_file', filename=file.filename) }}" target="_blank">{{ file.filename }}</a>
+                <form action="{{ url_for('delete_file', file_id=file.id, notice_id=notice.id) }}" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                </form>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+      <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
