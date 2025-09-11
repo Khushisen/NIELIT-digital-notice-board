@@ -93,7 +93,7 @@ def view_notice(id):
     notice = Notice.query.get_or_404(id)
     files = notice.files.split(",") if notice.files else []
     file_urls = [url_for("uploaded_file", filename=f) for f in files]
-    return render_template("view_notice.html", notice=notice, file_urls=file_urls)
+    return render_template("view_notice.html", notice=notice, file_urls=file_urls,files=files)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
