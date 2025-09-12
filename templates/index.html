@@ -130,19 +130,16 @@
     </div>
   </div>
 
-<<<<<<< HEAD
 <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="notices-container">
             <!-- Notices will be populated here by JavaScript -->
         </div>
-=======
   <div class="text-center mt-8">
     <button onclick="openAddNoticeModal()" class="glow-btn px-6 py-3 rounded-lg">
       <i class="fas fa-plus mr-2"></i>Add New Notice
     </button>
   </div>
->>>>>>> 5f1170c09e4c18097349e3f1d9d7445443e1f31d
 
   <div id="addNoticeModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
     <div class="flex items-center justify-center min-h-screen px-4">
@@ -166,10 +163,8 @@
     </div>
   </div>
 
-<<<<<<< HEAD
 
     <!-- Modal for Adding Notices -->
-    <div id="addNoticeModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
         <div class="flex items-center justify-center min-h-screen px-4">
             <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-6">
                 <h2 class="text-2xl font-bold mb-4">Add New Notice</h2>
@@ -192,19 +187,15 @@
                 </form>
             </div>
         </div>
-=======
   <footer class="bg-gray-900 text-white py-6 mt-8">
     <div class="container mx-auto px-4 text-center">
-      <p>© 2025 NIELIT Notice Board. All rights reserved.</p>
       <div class="mt-4 space-x-4">
         <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook text-xl"></i></a>
         <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
         <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram text-xl"></i></a>
       </div>
->>>>>>> 5f1170c09e4c18097349e3f1d9d7445443e1f31d
     </div>
   </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -239,13 +230,10 @@
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
         </div>
     </footer>
 
-
 <script>
-  let notices = {{ notices_json | tojson | safe }};
 
   function renderNotices(notices) {
     const container = document.getElementById('notices-container');
@@ -254,18 +242,12 @@
     if (!notices || notices.length === 0) {
       container.innerHTML = '<p class="col-span-full text-center text-gray-600">No notices found.</p>';
       return;
-=======
           </div>
         `;
-        slidesContainer.appendChild(slide);
       });
->>>>>>> 5f1170c09e4c18097349e3f1d9d7445443e1f31d
-    }
 
     renderSlides(notices);
-
     function showCategory(category) {
-      if (category === 'all') {
         renderSlides(notices);
       } else {
         const filtered = notices.filter(n => n.category === category);
@@ -316,7 +298,6 @@
         prevEl: ".swiper-button-prev",
       },
     });
-<<<<<<< HEAD
   }
 
   renderNotices(notices);
@@ -325,7 +306,6 @@
     if (category === 'all') {
       renderNotices(notices);
     } else {
-      const filtered = notices.filter(n => n.category === category);
       renderNotices(filtered);
     }
   }
@@ -345,9 +325,7 @@
   }
 
 </script>
-=======
   </script>
->>>>>>> 5f1170c09e4c18097349e3f1d9d7445443e1f31d
 </body>
 </html>
 
