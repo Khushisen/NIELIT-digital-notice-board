@@ -11,7 +11,7 @@ body {
             to { opacity: 1; transform: translateY(0); }
         }
         .hero-bg {
-            background: url('/static/images/background.jpg') no-repeat center center;
+            background: url('images/background.jpg') no-repeat center center;
             background-size: cover;
             height: 300px;
             position: relative;
