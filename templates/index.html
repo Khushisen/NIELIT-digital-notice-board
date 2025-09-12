@@ -130,11 +130,6 @@
     </div>
   </div>
 
-<!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="notices-container">
-            <!-- Notices will be populated here by JavaScript -->
-        </div>
   <div class="text-center mt-8">
     <button onclick="openAddNoticeModal()" class="glow-btn px-6 py-3 rounded-lg">
       <i class="fas fa-plus mr-2"></i>Add New Notice
@@ -163,32 +158,9 @@
     </div>
   </div>
 
-
-    <!-- Modal for Adding Notices -->
-        <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-6">
-                <h2 class="text-2xl font-bold mb-4">Add New Notice</h2>
-                <!-- Form action points to Flask's add_notice route -->
-                <form id="addNoticeForm" method="POST" action="{{ url_for('add_notice') }}">
-                    <input type="text" name="title" class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Notice Title" required>
-                    <!-- Name attribute changed to 'category' to match Flask backend -->
-                    <select name="category" class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="announcements">Announcements</option>
-                        <option value="events">Events</option>
-                        <option value="exams">Exams</option>
-                        <option value="resources">Resources</option>
-                    </select>
-                    <!-- Name attribute changed to 'content' to match Flask backend -->
-                    <textarea name="content" class="w-full mb-4 px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Notice Description" required></textarea>
-                    <div class="flex justify-between">
-                        <button type="button" onclick="closeAddNoticeModal()" class="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded text-white">Cancel</button>
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Add Notice</button>
-                    </div>
-                </form>
-            </div>
-        </div>
   <footer class="bg-gray-900 text-white py-6 mt-8">
     <div class="container mx-auto px-4 text-center">
+      <p>© 2025 NIELIT Notice Board. All rights reserved.</p>
       <div class="mt-4 space-x-4">
         <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook text-xl"></i></a>
         <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
@@ -196,6 +168,7 @@
       </div>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -230,24 +203,16 @@
                 </div>
               </div>
             </div>
-        </div>
-    </footer>
-
-<script>
-
-  function renderNotices(notices) {
-    const container = document.getElementById('notices-container');
-    container.innerHTML = '';
-
-    if (!notices || notices.length === 0) {
-      container.innerHTML = '<p class="col-span-full text-center text-gray-600">No notices found.</p>';
-      return;
           </div>
         `;
+        slidesContainer.appendChild(slide);
       });
+    }
 
     renderSlides(notices);
+
     function showCategory(category) {
+      if (category === 'all') {
         renderSlides(notices);
       } else {
         const filtered = notices.filter(n => n.category === category);
@@ -298,33 +263,6 @@
         prevEl: ".swiper-button-prev",
       },
     });
-  }
-
-  renderNotices(notices);
-
-  function showCategory(category) {
-    if (category === 'all') {
-      renderNotices(notices);
-    } else {
-      renderNotices(filtered);
-    }
-  }
-
-  function searchNotices() {
-    const query = document.getElementById('search').value.toLowerCase();
-    const filtered = notices.filter(n => n.title.toLowerCase().includes(query) || n.content.toLowerCase().includes(query));
-    renderNotices(filtered);
-  }
-
-  function openAddNoticeModal() {
-    document.getElementById('addNoticeModal').classList.remove('hidden');
-  }
-
-  function closeAddNoticeModal() {
-    document.getElementById('addNoticeModal').classList.add('hidden');
-  }
-
-</script>
   </script>
 </body>
 </html>
