@@ -220,16 +220,6 @@ def create_tables():
         hashed_pw = generate_password_hash("admin", method="pbkdf2:sha256")
         db.session.add(User(username="admin", password=hashed_pw))
         db.session.commit()
-    # Add sample notices with categories if the database is empty
-    if not Notice.query.first():
-        db.session.add(Notice(title="Mid-term Exams Schedule", content="Mid-term examinations for all semesters will begin on 15th March 2024. Please check your registered courses for specific dates and times.", category="exams"))
-        db.session.add(Notice(title="Annual Cultural Fest 2024", content="Join us for an exciting cultural celebration featuring performances, competitions, and food stalls. Participation certificates for all!", category="events"))
-        db.session.add(Notice(title="Library Hours Extension", content="During exam weeks, the central library will remain open 24 hours. Study groups are encouraged, and quiet zones are available.", category="announcements"))
-        db.session.add(Notice(title="Guest Lecture Series", content="Renowned industry experts will be delivering lectures on emerging technologies every Friday at 2 PM in the auditorium.", category="events"))
-        db.session.add(Notice(title="Scholarship Opportunities", content="Undergraduate students are eligible for various merit-based scholarships. Applications are open until 30th March 2024.", category="announcements"))
-        db.session.add(Notice(title="Campus Recruitment Drive", content="Top MNCs will be conducting placement drives next month. Resume workshops are mandatory for participating students.", category="events"))
-        db.session.commit()
-
 
 # ----------------------------
 # Run App
