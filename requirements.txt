@@ -3,3 +3,4 @@ flask_sqlalchemy
 werkzeug
 gunicorn
 python-dotenv
+pytz
