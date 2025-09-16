@@ -6,15 +6,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import json # Import json for passing data to JS
 from pytz import timezone
+from dotenv import load_dotenv
+load_dotenv()
 # ----------------------------
 # Flask Config
 # ----------------------------
 app = Flask(__name__)
-app.secret_key = "supersecretkey"
+app.secret_key = os.getenv("SECRET_KEY", "default-secret")
 
 # Database setup
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///noticeboard.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///noticeboard.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+#default admin credentials
+DEFAULT_ADMIN_USER = os.getenv("ADMIN_USER", "admin")
+DEFAULT_ADMIN_PASS = os.getenv("ADMIN_PASS", "admin")
 
 # File upload settings
 UPLOAD_FOLDER = "uploads"
@@ -216,10 +222,11 @@ def delete_notice(id):
 def create_tables():
     db.create_all()
     # Create default admin if not exists
-    if not User.query.filter_by(username="admin").first():
-        hashed_pw = generate_password_hash("admin", method="pbkdf2:sha256")
-        db.session.add(User(username="admin", password=hashed_pw))
+    if not User.query.filter_by(username=DEFAULT_ADMIN_USER).first():
+        hashed_pw = generate_password_hash(DEFAULT_ADMIN_PASS, method="pbkdf2:sha256")
+        db.session.add(User(username=DEFAULT_ADMIN_USER, password=hashed_pw))
         db.session.commit()
+
 
 # ----------------------------
 # Run App
